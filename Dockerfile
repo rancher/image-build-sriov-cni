@@ -1,6 +1,6 @@
-ARG TAG="2.6.2"
+ARG TAG="2.6.3"
 ARG UBI_IMAGE=registry.access.redhat.com/ubi7/ubi-minimal:latest
-ARG GO_IMAGE=rancher/hardened-build-base:v1.18.1b7
+ARG GO_IMAGE=rancher/hardened-build-base:v1.18.5b7
 
 # Build the project
 FROM ${GO_IMAGE} as builder
