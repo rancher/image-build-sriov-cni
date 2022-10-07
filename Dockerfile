@@ -17,6 +17,10 @@ RUN make clean && make build
 
 # Create the sriov-cni image
 FROM ${BCI_IMAGE}
+RUN zypper refresh && \
+    zypper update -y && \
+    zypper install -y gawk which && \
+    zypper clean -a
 WORKDIR /
 COPY --from=builder /go/sriov-cni/build/sriov /usr/bin/
 COPY --from=builder /go/sriov-cni/images/entrypoint.sh /
