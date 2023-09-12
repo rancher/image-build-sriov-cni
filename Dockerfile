@@ -1,11 +1,11 @@
 ARG TAG="2.6.3"
-ARG BCI_IMAGE=registry.suse.com/bci/bci-base:15.3.17.20.12
+ARG BCI_IMAGE=registry.suse.com/bci/bci-base
 ARG GO_IMAGE=rancher/hardened-build-base:v1.20.7b3
 
 # Build the project
 FROM ${GO_IMAGE} as builder
-RUN set -x \
- && apk --no-cache add \
+RUN set -x && \
+    apk --no-cache add \
     git \
     make
 ARG TAG
