@@ -21,7 +21,7 @@ steps:
   image: rancher/hardened-build-base:v1.20.7b3
   commands:
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-  - make DRONE_TAG=${DRONE_TAG} image-push image-manifest
+  - make DRONE_TAG=${DRONE_TAG} image-push
   environment:
     DOCKER_PASSWORD:
       from_secret: docker_password
@@ -70,7 +70,7 @@ steps:
   image: rancher/hardened-build-base:v1.20.4b11
   commands:
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-  - make DRONE_TAG=${DRONE_TAG} image-push image-manifest
+  - make DRONE_TAG=${DRONE_TAG} image-push
   environment:
     DOCKER_PASSWORD:
       from_secret: docker_password
