@@ -1,5 +1,5 @@
 ARG TAG="2.6.3"
-ARG BCI_IMAGE=registry.suse.com/bci/bci-base
+ARG BCI_IMAGE=registry.suse.com/bci/bci-micro
 ARG GO_IMAGE=rancher/hardened-build-base:v1.20.7b3
 
 # Build the project
