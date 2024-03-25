@@ -12,7 +12,7 @@ endif
 
 BUILD_META=-build$(shell date +%Y%m%d)
 ORG ?= rancher
-TAG ?= v2.6.3$(BUILD_META)
+TAG ?= v2.7.0$(BUILD_META)
 
 ifneq ($(DRONE_TAG),)
 	TAG := $(DRONE_TAG)
