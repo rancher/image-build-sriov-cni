@@ -1,7 +1,7 @@
 ARG TAG="2.7.0"
 ARG COMMIT="14fbf4a4addb9e946698edc7c5ea4cf20fe498e5"
 ARG BCI_IMAGE=registry.suse.com/bci/bci-base
-ARG GO_IMAGE=rancher/hardened-build-base:v1.21.11b2
+ARG GO_IMAGE=rancher/hardened-build-base:v1.21.11b3
 
 # Build the project
 FROM ${GO_IMAGE} as builder
