@@ -1,0 +1,63 @@
+---
+name: "Update upstream version"
+
+sources:
+ upstream:
+   name: Get upstream version
+   kind: githubrelease
+   spec:
+     owner: k8snetworkplumbingwg
+     repository: sriov-cni
+     token: '{{ requiredEnv .github.token }}'
+     typefilter:
+       release: true
+       draft: false
+       prerelease: false
+     versionfilter:
+       kind: latest
+
+targets:
+  dockerfile:
+    name: 'Bump Dockerfile to upstream version {{ source "upstream" }}'
+    kind: dockerfile
+    scmid: default
+    sourceid: upstream
+    spec:
+      file: "Dockerfile"
+      instruction:
+        keyword: "ARG"
+        matcher: "TAG"
+
+  makefile:
+    name: 'Bump Makefile to upstream version {{ source "upstream" }}'
+    kind: file
+    scmid: default
+    disablesourceinput: true
+    spec:
+      file: Makefile
+      matchpattern: '(?m)^TAG \:\= (.*)'
+      replacepattern: 'TAG := {{ source "upstream" }}$$(BUILD_META)'
+
+scms:
+  default:
+    kind: github
+    spec:
+      token: '{{ requiredEnv .github.token }}'
+      username: '{{ requiredEnv .github.username }}'
+      user: '{{ .github.user }}'
+      email: '{{ .github.email }}'
+      owner: '{{ .github.owner }}'
+      repository: '{{ .github.repository }}'
+      branch: '{{ .github.branch }}'
+
+actions:
+    default:
+        title: 'Bump to upstream version {{ source "upstream" }}'
+        kind: github/pullrequest
+        spec:
+            automerge: false
+            labels:
+                - chore
+                - skip-changelog
+                - status/auto-created
+        scmid: default
