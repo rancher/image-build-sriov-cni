@@ -7,7 +7,7 @@ RUN set -x && \
     apk --no-cache add \
     git \
     make
-ARG TAG=v2.8.1
+ARG TAG=v2.9.0
 RUN git clone --depth=1 https://github.com/k8snetworkplumbingwg/sriov-cni
 WORKDIR sriov-cni
 RUN git fetch --all --tags --prune
